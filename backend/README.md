@@ -6,7 +6,7 @@ Este projeto é uma base para a aula prática de Desenvolvimento de Sistemas Web
 
 **cadastro → hash de senha → login → sessão/token → middleware → rota protegida**
 
-As partes principais da autenticação contêm `TODOs`. Elas não estão prontas: serão implementadas pelos alunos durante a aula e depois poderão ser adaptadas aos projetos de TCC.
+O projeto implementa cadastro, login, hash de senhas com bcrypt, JWT, proteção de rotas e autorização por papel de usuário.
 
 ## 2. Tecnologias usadas
 
@@ -122,7 +122,7 @@ Resposta esperada:
 
 ### Cadastro
 
-`POST http://localhost:3000/auth/register`
+`POST http://localhost:3000/usuarios`
 
 ```json
 {
@@ -134,7 +134,7 @@ Resposta esperada:
 
 ### Login
 
-`POST http://localhost:3000/auth/login`
+`POST http://localhost:3000/login`
 
 ```json
 {
@@ -145,7 +145,7 @@ Resposta esperada:
 
 ### Perfil protegido
 
-`GET http://localhost:3000/users/profile`
+`GET http://localhost:3000/perfil`
 
 Depois de completar o login, envie o token no cabeçalho:
 
@@ -153,7 +153,13 @@ Depois de completar o login, envie o token no cabeçalho:
 Authorization: Bearer SEU_TOKEN_AQUI
 ```
 
-Enquanto os `TODOs` não forem completados, cadastro, login e middleware respondem com status `501`, indicando que são exercícios ainda não implementados.
+Também existem aliases didáticos: `POST /auth/register`, `POST /auth/login` e `GET /users/profile`.
+
+### Área administrativa
+
+`GET http://localhost:3000/admin`
+
+Envie o mesmo cabeçalho Bearer. Usuários comuns recebem `403`; o usuário criado pelo seed (`aluno@email.com` / `123456`) possui papel `ADMIN` e recebe `200`.
 
 ## 10. O que é hash de senha?
 
